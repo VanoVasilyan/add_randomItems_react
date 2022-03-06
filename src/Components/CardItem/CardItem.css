@@ -1,0 +1,23 @@
+.card-item{
+    width: 200px;
+    height: 100px;
+    margin: 30px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.delete-btn{
+    position: absolute;
+    border: none;
+    border: 1px solid darkgray;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: red;
+    font-size: 15px;
+    top: 0;
+    right: 0;
+}
