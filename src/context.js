@@ -1,7 +1,5 @@
 import React, { useContext,useState } from "react";
 
-
-
 const AppContext = React.createContext()
 
 const AppProvider = ({children}) => {
@@ -70,7 +68,6 @@ const AppProvider = ({children}) => {
     return <AppContext.Provider value={{
         card,
         isCardEmpty,
-        // randomBackground,
         clearList,
         sortList,
         removeItem,

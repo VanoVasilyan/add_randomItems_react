@@ -7,9 +7,7 @@ const CardItem = ({ id, num, bgColor }) => {
     const { removeItem } = GlobalContext()
     const [whiteColor, setWhiteColor] = useState(false)
 
-
     const backGroundList = bgColor.split(',').map(item => Number(item))
-
 
     useEffect(() => {
         if (backGroundList.every(item => item <= 100)) {
