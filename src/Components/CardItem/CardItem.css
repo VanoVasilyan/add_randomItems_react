@@ -12,12 +12,16 @@
 .delete-btn{
     position: absolute;
     border: none;
-    border: 1px solid darkgray;
     outline: none;
-    background: none;
     cursor: pointer;
     color: red;
+    background: whitesmoke;
+    padding: 3px;
     font-size: 15px;
     top: 0;
     right: 0;
+}
+
+.white-color{
+    color: white;
 }

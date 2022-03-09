@@ -7,20 +7,29 @@ const AppContext = React.createContext()
 const AppProvider = ({children}) => {
     const [card, setCard] = useState([])
     const [isCardEmpty, setisCardEmpty] = useState(true)
+    
 
+    const giveRandomBackground = () => {
+        const r = Math.trunc(Math.random() * 255)
+        const g = Math.trunc(Math.random() * 255)
+        const b = Math.trunc(Math.random() * 255)
+        return `${r},${g},${b}`
+    }
   
     const AddNewItem = () => {
+        const randomColor = giveRandomBackground()
         const randomNum = Math.trunc(Math.random() * 1000) + 1
+        
 
         const obj = {
             id: Date.now(),
-            num: randomNum
+            num: randomNum,
+            bgColor: randomColor
         }
 
         setCard([...card, obj]) 
         setisCardEmpty(false)
     }
-
 
 
     const removeItem = (id) => {
@@ -61,6 +70,7 @@ const AppProvider = ({children}) => {
     return <AppContext.Provider value={{
         card,
         isCardEmpty,
+        // randomBackground,
         clearList,
         sortList,
         removeItem,
