@@ -17,10 +17,11 @@ const CardItem = ({ id, num, bgColor }) => {
 
 
     return <div
-        className={`${whiteColor && 'white-color'} card-item`}
+        className={`${whiteColor ? 'white-color card-item' : 'card-item'}`}
         style={{ backgroundColor: `rgb(${bgColor})` }}
     >
         <div
+            className='count-div'
             onClick={() => setMainBackgroundColor(`rgb(${bgColor})`)}
         >{num}</div>
         <button
