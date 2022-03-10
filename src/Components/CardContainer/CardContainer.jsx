@@ -4,8 +4,11 @@ import { GlobalContext } from '../../context';
 
 
 const CardContainer = () => {
-    const { card, isCardEmpty } = GlobalContext()
-    return <div className='main-card-cont'>
+    const { card, isCardEmpty, mainBackgroundColor } = GlobalContext()
+
+    return <div className='main-card-cont'
+        style={{ backgroundColor: isCardEmpty ? 'inherit' : mainBackgroundColor }}
+    >
         {isCardEmpty && <h1 className='list-mess'>the list is empty</h1>}
         <div className='card-container'>
             {card.map((elem) => {

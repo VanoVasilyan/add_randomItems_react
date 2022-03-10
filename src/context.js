@@ -5,6 +5,7 @@ const AppContext = React.createContext()
 const AppProvider = ({children}) => {
     const [card, setCard] = useState([])
     const [isCardEmpty, setisCardEmpty] = useState(true)
+    const [mainBackgroundColor, setMainBackgroundColor] = useState('')
     
 
     const giveRandomBackground = () => {
@@ -68,11 +69,13 @@ const AppProvider = ({children}) => {
     return <AppContext.Provider value={{
         card,
         isCardEmpty,
+        mainBackgroundColor,
         clearList,
         sortList,
         removeItem,
         AddNewItem,
-        setisCardEmpty
+        setisCardEmpty,
+        setMainBackgroundColor
     }}>
         {children}
     </AppContext.Provider>

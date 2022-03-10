@@ -6,11 +6,11 @@ import Header from "./Components/Header";
 
 function App() {
   return (
-    <div className="main">
+  <>
       <Header />
       <CardContainer/>
       <Footer/>
-    </div>
+  </>
   );
 }
 

@@ -4,13 +4,13 @@ import './CardItem.css'
 
 
 const CardItem = ({ id, num, bgColor }) => {
-    const { removeItem } = GlobalContext()
+    const { removeItem, setMainBackgroundColor } = GlobalContext()
     const [whiteColor, setWhiteColor] = useState(false)
 
     const backGroundList = bgColor.split(',').map(item => Number(item))
 
     useEffect(() => {
-        if (backGroundList.every(item => item <= 100)) {
+        if (backGroundList.some(item => item <= 80)) {
             setWhiteColor(true)
         }
     }, [backGroundList])
@@ -18,8 +18,11 @@ const CardItem = ({ id, num, bgColor }) => {
 
     return <div
         className={`${whiteColor && 'white-color'} card-item`}
-        style={{ backgroundColor: `rgb(${bgColor})` }}>
-        {num}
+        style={{ backgroundColor: `rgb(${bgColor})` }}
+    >
+        <div
+            onClick={() => setMainBackgroundColor(`rgb(${bgColor})`)}
+        >{num}</div>
         <button
             onClick={() => removeItem(id)}
             className='delete-btn'
