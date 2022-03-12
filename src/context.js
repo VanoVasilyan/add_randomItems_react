@@ -1,4 +1,5 @@
 import React, { useContext,useState } from "react";
+import uniqId from 'uniqid'
 
 const AppContext = React.createContext()
 
@@ -6,6 +7,7 @@ const AppProvider = ({children}) => {
     const [card, setCard] = useState([])
     const [isCardEmpty, setisCardEmpty] = useState(true)
     const [mainBackgroundColor, setMainBackgroundColor] = useState('')
+    const id = uniqId()
     
 
     const giveRandomBackground = () => {
@@ -21,7 +23,7 @@ const AppProvider = ({children}) => {
         
 
         const obj = {
-            id: Date.now(),
+            id,
             num: randomNum,
             bgColor: randomColor
         }
