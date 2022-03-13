@@ -22,7 +22,6 @@ const AppProvider = ({children}) => {
         const randomColor = giveRandomBackground()
         const randomNum = Math.trunc(Math.random() * 1000) + 1
         
-
         const obj = {
             id,
             num: randomNum,
@@ -65,11 +64,16 @@ const AppProvider = ({children}) => {
         setCard([])
     }
 
-    useEffect(()=>{
-        window.onscroll = () => {
-            setWindowSize({yCoord: window.scrollY})
+    const scrollDown = () => {
+        setWindowSize({yCoord: window.scrollY})
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', scrollDown)
+        return () => {
+            window.removeEventListener('scroll', scrollDown)
         }
-    },[windowSize])
+    },[])
 
 
     const windowScrollToUp = () => {
@@ -80,8 +84,6 @@ const AppProvider = ({children}) => {
         });
     }
 
-
-  
 
 
     return <AppContext.Provider value={{
