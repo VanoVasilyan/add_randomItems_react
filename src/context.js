@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import uniqId from 'uniqid'
 
 const AppContext = React.createContext()
@@ -7,6 +7,7 @@ const AppProvider = ({children}) => {
     const [card, setCard] = useState([])
     const [isCardEmpty, setisCardEmpty] = useState(true)
     const [mainBackgroundColor, setMainBackgroundColor] = useState('')
+    const [windowSize,setWindowSize] = useState({yCoord: 0})
     const id = uniqId()
     
 
@@ -44,8 +45,6 @@ const AppProvider = ({children}) => {
 
 
     const sortList = () => {
-        const newElementsSorted = card
-
         const  compare = ( a, b ) => {
             if ( a.num < b.num ){
               return -1;
@@ -55,7 +54,7 @@ const AppProvider = ({children}) => {
             }
             return 0;
           }
-        const newSortedArray = newElementsSorted.sort( compare );
+        const newSortedArray = card.sort( compare );
        
         setCard([...newSortedArray])
     }
@@ -66,12 +65,31 @@ const AppProvider = ({children}) => {
         setCard([])
     }
 
+    useEffect(()=>{
+        window.onscroll = () => {
+            setWindowSize({yCoord: window.scrollY})
+        }
+    },[windowSize])
+
+
+    const windowScrollToUp = () => {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
+
+  
 
 
     return <AppContext.Provider value={{
         card,
         isCardEmpty,
         mainBackgroundColor,
+        windowSize,
+        windowScrollToUp,
         clearList,
         sortList,
         removeItem,

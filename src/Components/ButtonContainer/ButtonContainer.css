@@ -14,3 +14,13 @@
     color: rgb(70, 70, 230);
     background-color: white;
 }
+
+@media screen  and (max-width:600px){
+    .button-control{
+        text-align: center;
+    }
+    .btn{
+        margin: 1em;
+    }
+}
+
