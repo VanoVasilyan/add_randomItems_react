@@ -3,8 +3,6 @@ import './CardContainer.css'
 import { GlobalContext } from '../../context';
 import { useEffect } from 'react';
 
-
-
 const CardContainer = () => {
     const { card, isCardEmpty, mainBackgroundColor, setMainBackgroundColor } = GlobalContext()
 
@@ -25,6 +23,5 @@ const CardContainer = () => {
         </div>
     </div>
 }
-
 
 export default CardContainer

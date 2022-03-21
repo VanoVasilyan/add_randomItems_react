@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { GlobalContext } from '../../context'
 import './CardItem.css'
 
-
 const CardItem = ({ id, num, bgColor }) => {
     const { removeItem, setMainBackgroundColor } = GlobalContext()
     const [whiteColor, setWhiteColor] = useState(false)
@@ -14,7 +13,6 @@ const CardItem = ({ id, num, bgColor }) => {
             setWhiteColor(true)
         }
     }, [backGroundList])
-
 
     return <div
         className={`${whiteColor ? 'white-color card-item' : 'card-item'}`}
@@ -29,8 +27,6 @@ const CardItem = ({ id, num, bgColor }) => {
             className='delete-btn'
         >X</button>
     </div>
-
 }
-
 
 export default CardItem
