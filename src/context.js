@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, createContext } from 'react';
 import uniqId from 'uniqid'
 
-const AppContext = React.createContext()
+const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
     const [card, setCard] = useState([])
@@ -40,17 +40,8 @@ const AppProvider = ({ children }) => {
     }
 
     const sortList = () => {
-        const compare = (a, b) => {
-            if (a.num < b.num) {
-                return -1;
-            }
-            if (a.num > b.num) {
-                return 1;
-            }
-            return 0;
-        }
+        const compare = (a, b) => a.num - b.num
         const newSortedArray = card.sort(compare);
-
         setCard([...newSortedArray])
     }
 
@@ -93,10 +84,10 @@ const AppProvider = ({ children }) => {
     }}>
         {children}
     </AppContext.Provider>
-}
+};
 
 const GlobalContext = () => {
     return useContext(AppContext)
-}
+};
 
 export { AppProvider, GlobalContext }

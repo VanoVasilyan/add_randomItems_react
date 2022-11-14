@@ -1,5 +1,5 @@
-import './ButtonContainer.css'
 import { GlobalContext } from '../../context';
+import './ButtonContainer.css';
 
 const ButtonContainer = () => {
     const { AddNewItem, sortList, clearList } = GlobalContext()
@@ -9,6 +9,6 @@ const ButtonContainer = () => {
         <button className='btn' onClick={sortList}>Sort List</button>
         <button className='btn' onClick={clearList}>Clear List</button>
     </div>
-}
+};
 
 export default ButtonContainer

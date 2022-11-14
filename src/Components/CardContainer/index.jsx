@@ -1,10 +1,10 @@
-import CardItem from '../CardItem'
-import './CardContainer.css'
+import CardItem from '../CardItem/CardItem';
 import { GlobalContext } from '../../context';
 import { useEffect } from 'react';
+import './CardContainer.css';
 
 const CardContainer = () => {
-    const { card, isCardEmpty, mainBackgroundColor, setMainBackgroundColor } = GlobalContext()
+    const { card, isCardEmpty, mainBackgroundColor, setMainBackgroundColor } = GlobalContext();
 
     useEffect(() => {
         if (!card.length) {
