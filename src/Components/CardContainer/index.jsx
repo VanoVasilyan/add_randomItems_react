@@ -1,10 +1,12 @@
-import CardItem from '../CardItem/CardItem';
-import { GlobalContext } from '../../context';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { GlobalContext } from '../../context';
+import CardItem from '../CardItem/CardItem';
 import './CardContainer.css';
 
 const CardContainer = () => {
-    const { card, isCardEmpty, mainBackgroundColor, setMainBackgroundColor } = GlobalContext();
+    const card = useSelector(state => state.cardReducer.card);
+    const { mainBackgroundColor, setMainBackgroundColor } = GlobalContext();
 
     useEffect(() => {
         if (!card.length) {
@@ -12,12 +14,13 @@ const CardContainer = () => {
         }
     }, [card, setMainBackgroundColor])
 
+
     return <div className='main-card-cont'
-        style={{ backgroundColor: isCardEmpty ? 'inherit' : mainBackgroundColor }}
+        style={{ backgroundColor: !card?.length ? 'inherit' : mainBackgroundColor }}
     >
-        {isCardEmpty && <h1 className='list-mess'>the list is empty</h1>}
+        {!card?.length && <h1 className='list-mess'>the list is empty</h1>}
         <div className='card-container'>
-            {card.map((elem) => {
+            {card?.map((elem) => {
                 return <CardItem key={elem.id} {...elem} />
             })}
         </div>

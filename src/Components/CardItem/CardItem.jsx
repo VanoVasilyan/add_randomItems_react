@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { GlobalContext } from '../../context';
+import { deleteItem } from '../../redux/slices/card';
 import './CardItem.css';
 
 const CardItem = ({ id, num, bgColor }) => {
-    const { removeItem, setMainBackgroundColor } = GlobalContext()
+    const dispatch = useDispatch();
+    const { setMainBackgroundColor } = GlobalContext()
     const [whiteColor, setWhiteColor] = useState(false)
 
     const backGroundList = bgColor.split(',').map(item => Number(item))
@@ -23,7 +26,7 @@ const CardItem = ({ id, num, bgColor }) => {
             onClick={() => setMainBackgroundColor(`rgb(${bgColor})`)}
         >{num}</div>
         <button
-            onClick={() => removeItem(id)}
+            onClick={() => dispatch(deleteItem(id))}
             className='delete-btn'
         >X</button>
     </div>
