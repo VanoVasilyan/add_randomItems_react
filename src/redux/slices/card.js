@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import uniqId from 'uniqid';
 import { randomRGBColor, generateRandomNumber, compareItems } from '../../utils';
 
@@ -26,9 +26,19 @@ const cardSlice = createSlice({
             newSortedArray.sort(compareItems)
             return { ...state, card: newSortedArray }
         },
+        editItemNumber: (state, { payload }) => {
+            const value = Number(payload.num)
+            const data = [...current(state).card]
+            const findItemIndex = data.findIndex(item => item.id === payload.id)
+            const currentObj = { ...data[findItemIndex] }
+            currentObj.num = value
+            data.splice(findItemIndex, 1, currentObj)
+
+            return { state, card: data }
+        },
         clearCard: () => initialState
     }
 })
 
-export const { addNewItem, deleteItem, sortCard, clearCard } = cardSlice.actions;
+export const { addNewItem, deleteItem, sortCard, clearCard, editItemNumber } = cardSlice.actions;
 export default cardSlice.reducer

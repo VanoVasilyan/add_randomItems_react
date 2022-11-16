@@ -3,7 +3,7 @@ import { useContext, useEffect, useState, createContext } from 'react';
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-    const [mainBackgroundColor, setMainBackgroundColor] = useState('')
+    const [mainBackgroundColor, setMainBackgroundColor] = useState('inherit')
     const [windowSize, setWindowSize] = useState({ yCoord: 0 })
 
     const scrollDown = () => {

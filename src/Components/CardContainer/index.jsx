@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { GlobalContext } from '../../context';
-import CardItem from '../CardItem/CardItem';
+import CardItem from '../CardItem';
 import './CardContainer.css';
 
 const CardContainer = () => {
@@ -14,7 +14,6 @@ const CardContainer = () => {
         }
     }, [card, setMainBackgroundColor])
 
-
     return <div className='main-card-cont'
         style={{ backgroundColor: !card?.length ? 'inherit' : mainBackgroundColor }}
     >
@@ -25,6 +24,6 @@ const CardContainer = () => {
             })}
         </div>
     </div>
-}
+};
 
 export default CardContainer

@@ -1,11 +1,11 @@
-import Header from '../Header';
+import Navbar from '../Navbar';
 import CardContainer from '../CardContainer';
 import Footer from '../Footer';
 
 const App = () => {
   return (
     <>
-      <Header />
+      <Navbar />
       <CardContainer />
       <Footer />
     </>

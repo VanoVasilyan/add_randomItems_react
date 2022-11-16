@@ -4,7 +4,6 @@ import './ButtonContainer.css';
 
 const ButtonContainer = () => {
     const dispatch = useDispatch();
-
     return <div className='button-control'>
         <button className='btn' onClick={() => dispatch(addNewItem())}>Add Card</button>
         <button className='btn' onClick={() => dispatch(sortCard())}>Sort List</button>
