@@ -4,7 +4,7 @@ import { GlobalContext } from '../../context';
 import { deleteItem, editItemNumber } from '../../redux/slices/card';
 import './CardItem.css';
 
-const CardItem = ({ id, num, bgColor }) => {
+const CardItem = ({ elem: { id, num, bgColor }, idx }) => {
     const inputRef = useRef(null);
     const dispatch = useDispatch();
     const { setMainBackgroundColor } = GlobalContext();
@@ -38,11 +38,11 @@ const CardItem = ({ id, num, bgColor }) => {
     return <div
         className={`${whiteColor ? 'white-color card-item' : 'card-item'}`}
         style={{ backgroundColor: `rgb(${bgColor})` }}
-        onBlur={() => setShowForm(false)}
+        onMouseLeave={() => setShowForm(false)}
     >
         <div
             className='count-div'
-            onClick={() => { setMainBackgroundColor(`rgb(${bgColor})`); setShowForm(true) }}
+            onClick={() => { setMainBackgroundColor(`rgb(${bgColor})`) }}
         >
             {showForm ? (
                 <form onSubmit={handleSubmit}>
@@ -52,10 +52,16 @@ const CardItem = ({ id, num, bgColor }) => {
                 <span>{num}</span>
             )}
         </div>
-        <button
-            onClick={() => dispatch(deleteItem(id))}
-            className='delete-btn'
-        ><i className="fa-solid fa-circle-xmark"></i></button>
+        <span className='item-number'>&#8470; {idx + 1}</span>
+        <div className='btn-block-edit'>
+            <button className='edit-btn' onClick={() => setShowForm(prev => !prev)} >
+                <i className="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button
+                className='delete-btn'
+                onClick={() => dispatch(deleteItem(id))}
+            ><i className="fa-solid fa-circle-xmark"></i></button>
+        </div>
     </div>
 };
 

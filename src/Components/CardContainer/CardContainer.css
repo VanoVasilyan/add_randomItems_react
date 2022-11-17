@@ -2,13 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     flex-wrap: wrap;
 }
 
 .list-mess{
-    text-transform: capitalize;
     text-align: center;
     color: crimson;
     font-family: sans-serif;

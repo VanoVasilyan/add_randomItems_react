@@ -17,10 +17,10 @@ const CardContainer = () => {
     return <div className='main-card-cont'
         style={{ backgroundColor: !card?.length ? 'inherit' : mainBackgroundColor }}
     >
-        {!card?.length && <h1 className='list-mess'>the list is empty</h1>}
+        {!card?.length && <h1 className='list-mess'>The list is empty, add new card</h1>}
         <div className='card-container'>
-            {card?.map((elem) => {
-                return <CardItem key={elem.id} {...elem} />
+            {card?.map((elem, idx) => {
+                return <CardItem key={elem.id} idx={idx} elem={elem} />
             })}
         </div>
     </div>

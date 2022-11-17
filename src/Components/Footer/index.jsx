@@ -22,7 +22,7 @@ const Footer = () => {
             <FaChevronCircleUp size={50} />
         </button>
         <footer>
-            <p>Its Done!!!</p>
+            <p>{new Date().getFullYear()}</p>
         </footer>
     </>
     )

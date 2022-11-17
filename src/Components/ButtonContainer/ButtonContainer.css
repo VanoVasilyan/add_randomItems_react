@@ -1,25 +1,47 @@
-.btn{
+.btn {
+    font-size: 18px;
     border: 1px solid rgb(70, 70, 230);
     outline: none;
     cursor: pointer;
     padding: 13px;
-    width: 120px;
-    margin: 0 2em;
+    margin: 0 1em;
     color: white;
     background-color: rgb(70, 70, 230);
-    transition: .5s;
+    transition: .4s;
+    border-radius: 12px;
 }
 
-.btn:hover{
+.btn:hover {
     color: rgb(70, 70, 230);
     background-color: white;
 }
 
-@media screen  and (max-width:600px){
-    .button-control{
+.btn.add {
+    border: 1px solid green;
+    background-color: green;
+}
+
+.btn.add:hover {
+    color: green;
+    background-color: white;
+}
+
+.btn.clear {
+    border: 1px solid red;
+    background-color: red;
+}
+
+.btn.clear:hover {
+    color: red;
+    background-color: white;
+}
+
+@media screen and (max-width:600px) {
+    .button-control {
         text-align: center;
     }
-    .btn{
+
+    .btn {
         margin: 1em;
     }
 }

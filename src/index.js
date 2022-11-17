@@ -11,6 +11,6 @@ root.render(
   <Provider store={store}>
     <AppProvider>
       <App />
-    </AppProvider>,
+    </AppProvider>
   </Provider>
 );

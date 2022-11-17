@@ -10,17 +10,31 @@
     position: relative;
 }
 
-.delete-btn {
+.btn-block-edit {
     position: absolute;
+    top: 0;
+    right: 0;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
+}
+
+.delete-btn,
+.edit-btn {
     border: none;
     outline: none;
     cursor: pointer;
-    color: red;
     background: none;
     padding: 3px;
     font-size: 18px;
-    top: 0;
-    right: 0;
+}
+
+.delete-btn {
+    color: red;
+}
+
+.edit-btn {
+    color: green;
+    border-right: 1px solid grey;
 }
 
 .count-div {
@@ -46,4 +60,10 @@
     border: 1px solid grey;
     width: 80px;
     padding: 2px 6px;
+}
+
+.item-number {
+    position: absolute;
+    top: 2px;
+    left: 4px;
 }
