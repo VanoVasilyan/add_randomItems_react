@@ -1,17 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-modal';
 import { GlobalContext } from '../../context';
+import './Modal.css';
+import { changeItemColor } from '../../redux/slices/card';
 
 const ChangeColorModal = () => {
     Modal.setAppElement('#root');
+    const dispatch = useDispatch();
     const card = useSelector(state => state.cardReducer.card);
     const { showModal, setShowModal } = GlobalContext();
     const [changedItemProps, setChangedItemProps] = useState({
-        color: '',
-        itemNumber: ''
-    })
+        bgColor: '',
+        index: ''
+    });
+    const [requiredForNumber, setRequiredForNumber] = useState(false);
+    const [requiredForColor, setRequiredForColor] = useState(false);
 
     const customStyles = {
         content: {
@@ -21,16 +26,24 @@ const ChangeColorModal = () => {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
+            position: 'relative',
+            width: '350px'
         },
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (changedItemProps.color && changedItemProps.itemNumber) {
-            if (!card[Number(changedItemProps.itemNumber - 1)]) {
-                alert('Please set valid item number')
-                return
-            }
+
+        if (!changedItemProps.bgColor) {
+            setRequiredForColor(true)
+        }
+
+        if (!changedItemProps.index) {
+            setRequiredForNumber(true)
+        }
+
+        if (changedItemProps.bgColor && changedItemProps.index) {
+            dispatch(changeItemColor({ ...changedItemProps, index: changedItemProps.index - 1 }))
             setShowModal(false)
         }
     }
@@ -42,11 +55,19 @@ const ChangeColorModal = () => {
             style={customStyles}
             contentLabel="Example Modal"
         >
-            <button onClick={() => setShowModal(false)}>X</button>
+            <button onClick={() => setShowModal(false)} className='delete-btn-modal'><i className="fa-solid fa-circle-xmark"></i></button>
             <form onSubmit={handleSubmit}>
-                <label>Item Number:</label><input id='num' type='number' value={changedItemProps.itemNumber} onChange={(e) => setChangedItemProps({ ...changedItemProps, itemNumber: e.target.value })} />
-                <label htmlFor="color">Color:</label><input id='color' type='text' defaultValue='' onChange={(e) => setChangedItemProps({ ...changedItemProps, color: e.target.value })} />
-                <input type="submit" />
+                <div className='form-fileds'>
+                    <div>
+                        <label>&#8470; : <input className='numInput' type='number' min={0} max={card.length} value={changedItemProps.itemNumber} onChange={(e) => { setChangedItemProps({ ...changedItemProps, index: e.target.value }); setRequiredForNumber(false) }} /></label>
+                        {requiredForNumber && <p className='err-msg'>Please set Item Number *</p>}
+                    </div>
+                    <div>
+                        <label>Color : <input className='colorInput' type='color' value={changedItemProps.bgColor} onChange={(e) => { setChangedItemProps({ ...changedItemProps, bgColor: e.target.value }); setRequiredForColor(false) }} /></label>
+                        {requiredForColor && <p className='err-msg'>Please select a new color *</p>}
+                    </div>
+                </div>
+                <input type="submit" className='submit-btn' />
             </form>
         </Modal>
     )

@@ -1,6 +1,6 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import uniqId from 'uniqid';
-import { randomRGBColor, generateRandomNumber, compareItems } from '../../utils';
+import { randomRGBColor, generateRandomNumber, compareItems, hexToRgb } from '../../utils';
 
 const initialState = {
     card: []
@@ -16,6 +16,7 @@ const cardSlice = createSlice({
                 num: generateRandomNumber(),
                 bgColor: randomRGBColor()
             }
+
             return { ...state, card: [...state.card, obj] }
         },
         deleteItem: (state, { payload: id }) => {
@@ -23,16 +24,27 @@ const cardSlice = createSlice({
         },
         sortCard: (state) => {
             const newSortedArray = [...state.card];
-            newSortedArray.sort(compareItems)
+            newSortedArray.sort(compareItems);
+
             return { ...state, card: newSortedArray }
         },
         editItemNumber: (state, { payload }) => {
-            const value = Number(payload.num)
-            const data = [...current(state).card]
-            const findItemIndex = data.findIndex(item => item.id === payload.id)
-            const currentObj = { ...data[findItemIndex] }
-            currentObj.num = value
-            data.splice(findItemIndex, 1, currentObj)
+            const value = Number(payload.num);
+            const data = [...current(state).card];
+            const findItemIndex = data.findIndex(item => item.id === payload.id);
+            const currentObj = { ...data[findItemIndex] };
+            currentObj.num = value;
+            data.splice(findItemIndex, 1, currentObj);
+
+            return { state, card: data }
+        },
+        changeItemColor: (state, { payload }) => {
+            const { index, bgColor } = payload;
+            const newColor = hexToRgb(bgColor);
+            const data = [...current(state).card];
+            const currentObj = { ...data[index] };
+            currentObj.bgColor = newColor;
+            data.splice(index, 1, currentObj);
 
             return { state, card: data }
         },
@@ -40,5 +52,5 @@ const cardSlice = createSlice({
     }
 })
 
-export const { addNewItem, deleteItem, sortCard, clearCard, editItemNumber } = cardSlice.actions;
+export const { addNewItem, deleteItem, sortCard, clearCard, editItemNumber, changeItemColor } = cardSlice.actions;
 export default cardSlice.reducer

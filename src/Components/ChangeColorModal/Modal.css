@@ -1,0 +1,55 @@
+.form-fileds {
+    display: flex;
+    font-weight: 600;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.numInput,
+.colorInput {
+    width: 60px;
+    outline: none;
+    text-align: center;
+    border: 1px solid darkgray;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.err-msg {
+    color: red;
+    font-size: 12px;
+    margin: 0;
+}
+
+.delete-btn-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: red;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    padding: 3px;
+    font-size: 18px;
+}
+
+.submit-btn {
+    display: block;
+    font-size: 15px;
+    transition: .4s;
+    margin: 30px auto 0;
+    color: white;
+    cursor: pointer;
+    border: 1px solid green;
+    background-color: green;
+    font-weight: 700;
+    padding: 7px 13px;
+    border-radius: 15px;
+}
+
+.submit-btn:hover {
+    color: green;
+    background-color: white;
+}
