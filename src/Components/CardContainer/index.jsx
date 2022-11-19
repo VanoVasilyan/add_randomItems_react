@@ -10,7 +10,7 @@ const CardContainer = () => {
 
     useEffect(() => {
         if (!card.length) {
-            setMainBackgroundColor('')
+            setMainBackgroundColor('');
         }
     }, [card, setMainBackgroundColor])
 
@@ -19,11 +19,11 @@ const CardContainer = () => {
     >
         {!card?.length && <h1 className='list-mess'>The list is empty, add new card</h1>}
         <div className='card-container'>
-            {card?.map((elem, idx) => {
-                return <CardItem key={elem.id} idx={idx} elem={elem} />
+            {card?.map((elem, index) => {
+                return <CardItem key={elem.id} index={index} elem={elem} />
             })}
         </div>
     </div>
-};
+}
 
-export default CardContainer
+export default CardContainer;

@@ -5,16 +5,16 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
     const [mainBackgroundColor, setMainBackgroundColor] = useState('inherit');
     const [windowSize, setWindowSize] = useState({ yCoord: 0 });
-    const [showModal, setShowModal] = useState(false);
+    const [isShowModal, setIsShowModal] = useState(false);
 
     const scrollDown = () => {
-        setWindowSize({ yCoord: window.scrollY })
+        setWindowSize({ yCoord: window.scrollY });
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', scrollDown)
+        window.addEventListener('scroll', scrollDown);
         return () => {
-            window.removeEventListener('scroll', scrollDown)
+            window.removeEventListener('scroll', scrollDown);
         }
     }, [])
 
@@ -29,8 +29,8 @@ const AppProvider = ({ children }) => {
     return <AppContext.Provider value={{
         mainBackgroundColor,
         windowSize,
-        showModal,
-        setShowModal,
+        isShowModal,
+        setIsShowModal,
         windowScrollToUp,
         setMainBackgroundColor
     }}>

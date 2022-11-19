@@ -4,15 +4,36 @@ import { GlobalContext } from '../../context';
 import { deleteItem, editItemNumber } from '../../redux/slices/card';
 import './CardItem.css';
 
-const CardItem = ({ elem: { id, num, bgColor }, idx }) => {
+const CardItem = ({ elem: { id, num, bgColor }, index }) => {
     const inputRef = useRef(null);
     const dispatch = useDispatch();
     const { setMainBackgroundColor } = GlobalContext();
     const [whiteColor, setWhiteColor] = useState(false);
     const [showForm, setShowForm] = useState(false);
-    const [newValue, setNewValue] = useState('')
+    const [newValue, setNewValue] = useState('');
 
-    const backGroundList = bgColor.split(',').map(item => Number(item));
+    const backGroundList = bgColor?.split(',')?.map(item => Number(item));
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setShowForm(false);
+        dispatch(editItemNumber({
+            id,
+            num: newValue
+        }))
+    };
+
+    const deleteCardItem = () => {
+        dispatch(deleteItem(id))
+    };
+
+    const changeBackground = () => {
+        setMainBackgroundColor(`rgb(${bgColor})`)
+    };
+
+    const showInputForm = () => {
+        setShowForm(prev => !prev)
+    }
 
     useEffect(() => {
         if (backGroundList.some(item => item <= 80)) {
@@ -22,18 +43,9 @@ const CardItem = ({ elem: { id, num, bgColor }, idx }) => {
 
     useEffect(() => {
         if (inputRef.current) {
-            inputRef?.current.focus()
+            inputRef?.current.focus();
         }
     }, [showForm])
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setShowForm(false)
-        dispatch(editItemNumber({
-            id,
-            num: newValue
-        }))
-    }
 
     return <div
         className={`${whiteColor ? 'white-color card-item' : 'card-item'}`}
@@ -42,7 +54,7 @@ const CardItem = ({ elem: { id, num, bgColor }, idx }) => {
     >
         <div
             className='count-div'
-            onClick={() => { setMainBackgroundColor(`rgb(${bgColor})`) }}
+            onClick={changeBackground}
         >
             {showForm ? (
                 <form onSubmit={handleSubmit}>
@@ -52,17 +64,17 @@ const CardItem = ({ elem: { id, num, bgColor }, idx }) => {
                 <span>{num}</span>
             )}
         </div>
-        <span className='item-number'>&#8470; {idx + 1}</span>
+        <span className='item-number'>&#8470; {index + 1}</span>
         <div className='btn-block-edit'>
-            <button className='edit-btn' onClick={() => setShowForm(prev => !prev)} >
+            <button className='edit-btn' onClick={showInputForm} >
                 <i className="fa-solid fa-pen-to-square"></i>
             </button>
             <button
                 className='delete-btn'
-                onClick={() => dispatch(deleteItem(id))}
+                onClick={deleteCardItem}
             ><i className="fa-solid fa-circle-xmark"></i></button>
         </div>
     </div>
-};
+}
 
-export default CardItem
+export default CardItem;
