@@ -58,7 +58,7 @@ const ChangeColorModal = () => {
             <form onSubmit={handleSubmit}>
                 <div className='form-fileds'>
                     <div>
-                        <label>&#8470; : <input className='numInput' type='number' min={0} max={card.length} value={changedItemProps.itemNumber} onChange={(e) => { setChangedItemProps({ ...changedItemProps, index: e.target.value }); setRequiredForNumber(false) }} /></label>
+                        <label>&#8470; : <input className='numInput' type='number' min={1} max={card.length} value={changedItemProps.index} onChange={(e) => { setChangedItemProps({ ...changedItemProps, index: e.target.value }); setRequiredForNumber(false) }} /></label>
                         {requiredForNumber && <p className='err-msg'>Please set Item Number *</p>}
                     </div>
                     <div>
